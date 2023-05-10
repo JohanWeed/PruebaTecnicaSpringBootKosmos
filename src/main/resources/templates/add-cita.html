@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Solicitar Citas: </h1>
+    <form action="/citas/agregar" method="post">
+        <div>
+            <label for="nombrePaciente">Nombre del paciente</label>
+            <input id="nombrePaciente" name="nombrePaciente" type="text" placeholder="Nombre del paciente">
+        </div>
+        <div>
+            <label for="especialidad">Especialidad:</label>
+            <select id="especialidad" name="doctor.especialidad">
+                <option value="">Selecciona una especialidad</option>
+                <th:block th:each="especialidad : ${especialidades}">
+                    <option th:value="${especialidad}" th:text="${especialidad}"></option>
+                </th:block>
+            </select>
+        </div>
+        <div>
+            <label for="horarioCita">Horario de la cita:</label>
+            <input id="horarioCita" type="datetime-local" name="horarioCita">
+        </div>
+        <div>
+            <label for="consultorio">Consultorio</label>
+            <select class="form-control" id="consultorio" name="consultorio.id">
+                <option value="">Seleccione un consultorio</option>
+                <th:block th:each="consultorio : ${consultorios}">
+                    <option th:value="${consultorio.id}" th:text="${consultorio.numero}"></option>
+                </th:block>
+            </select>
+        </div>
+        <button type="submit">Agendar cita</button>
+    </form>
+
+</body>
+
+</html>
